@@ -3,20 +3,19 @@ package main
 import "fmt"
 
 func callbackHelp(cfg *config) error {
-  fmt.Println("Welcome to Pokedex help menu!")
-  fmt.Println("Here are your available commands:")
+	fmt.Println("Welcome to Pokedex help menu!")
+	fmt.Println("Here are your available commands:")
 
-  availableCommands := getCommands()
+	availableCommands := getCommands()
 
-  for _, cmd := range availableCommands {
-    fmt.Printf("- %v: %s\n",
-      cmd.name,
-      cmd.description,
-    );
-  }
+	for _, cmd := range availableCommands {
+		fmt.Printf("- %v: %s\n",
+			cmd.name,
+			cmd.description,
+		)
+	}
 
-  fmt.Println("")
+	fmt.Println("")
 
-  return nil
+	return nil
 }
-
