@@ -8,13 +8,13 @@ import (
 const baseURL = "https://pokeapi.co/api/v2"
 
 type Client struct {
-  httpClient http.Client
+	httpClient http.Client
 }
 
 func NewClient() Client {
-  return Client {
-    httpClient: http.Client{
-      Timeout: time.Minute,
-    },
-  }
+	return Client{
+		httpClient: http.Client{
+			Timeout: time.Minute,
+		},
+	}
 }
