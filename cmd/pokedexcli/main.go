@@ -1,6 +1,10 @@
 package main
 
-import "github.com/lucas-giraldelli/pokedexcli/internal/pokeapi"
+import (
+	"time"
+
+	"github.com/lucas-giraldelli/pokedexcli/internal/pokeapi"
+)
 
 type config struct {
 	pokeApiClient        pokeapi.Client
@@ -9,8 +13,9 @@ type config struct {
 }
 
 func main() {
+	interval := time.Minute * 5
 	cfg := config{
-		pokeApiClient: pokeapi.NewClient(),
+		pokeApiClient: pokeapi.NewClient(interval),
 	}
 
 	startRepl(&cfg)
