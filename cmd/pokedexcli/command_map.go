@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func callbackMap(cfg *config) error {
+func callbackMap(cfg *config, args ...string) error {
 	resp, err := cfg.pokeApiClient.ListLocationAreas(cfg.nextLocationArea)
 
 	if err != nil {
@@ -23,7 +23,7 @@ func callbackMap(cfg *config) error {
 	return nil
 }
 
-func callbackMapb(cfg *config) error {
+func callbackMapb(cfg *config, args ...string) error {
 	if cfg.previousLocationArea == nil {
 		return errors.New("you're in the first page")
 	}
