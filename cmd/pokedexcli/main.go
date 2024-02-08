@@ -14,7 +14,7 @@ type config struct {
 }
 
 func main() {
-	interval := time.Minute * 5
+	interval := time.Hour
 	cfg := config{
 		pokeApiClient: pokeapi.NewClient(interval),
 		caughtPokemon: make(map[string]pokeapi.Pokemon),
