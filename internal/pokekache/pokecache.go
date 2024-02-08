@@ -27,18 +27,18 @@ func NewCache(interval time.Duration) Cache {
 }
 
 func (c *Cache) Add(key string, val []byte) {
-	c.mux.Lock()
+	c.mux.Lock();
+	defer c.mux.Unlock()
 	c.cache[key] = cacheEntry{
 		val: val,
 		createdAt: time.Now().UTC(),
 	}
-	c.mux.Unlock()
 }
 
 func (c *Cache) Get(key string) ([]byte, bool) {
 	c.mux.RLock()
+  defer c.mux.RUnlock()
 	cacheEntry, ok := c.cache[key]
-	c.mux.RUnlock()
 
 	return cacheEntry.val, ok
 }
@@ -54,10 +54,10 @@ func (c *Cache) reap(interval time.Duration) {
 	timeAgo := time.Now().UTC().Add(-interval)
 
 	c.mux.Lock()
+	defer	c.mux.Unlock()
 	for k, v := range c.cache {
 		if v.createdAt.Before(timeAgo) {
 			delete(c.cache, k)
 		}
 	}
-	c.mux.Unlock()
 }
