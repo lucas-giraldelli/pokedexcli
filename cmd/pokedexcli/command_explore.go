@@ -22,5 +22,8 @@ func callbackExplore(cfg *config, args ...string) error {
 		fmt.Printf(" - %s\n", pokemon.Pokemon.Name)
 	}
 
+	cfg.totalExperience += 1
+	fmt.Printf("By exploring you gained 1xp, total: %v\n", cfg.totalExperience)
+
 	return nil
 }
